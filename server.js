@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
     // Create a document with request IP and current time of request
     col.insert({ip: req.ip, date: Date.now()});
     col.count(function(err, count){
-      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails, ipInfo:ip , portInfo:port });
+      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails, ipInfo:process.env.IP , ip2Info: process.env.OPENSHIFT_NODEJS_IP , portInfo:port });
     });
   } else {
     res.render('index.html', { pageCountMessage : null});
